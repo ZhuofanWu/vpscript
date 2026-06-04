@@ -11,3 +11,9 @@ curl -fsSL https://raw.githubusercontent.com/ZhuofanWu/vpscript/main/bbrfq.sh | 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/ZhuofanWu/vpscript/main/docker.sh | sudo bash
 ```
+
+## 一键管理 Swap
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/ZhuofanWu/vpscript/main/swap.sh | sudo bash
+```
