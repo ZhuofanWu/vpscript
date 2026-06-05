@@ -1,4 +1,3 @@
-
 #!/bin/bash
 # ==========================================================
 # Ubuntu 22.04 网络一键调优脚本 (BBR+FQ+Buffer+复用)
@@ -53,6 +52,24 @@ if [ "$EUID" -ne 0 ]; then
     exit 1
 fi
 
+read_choice() {
+    local prompt="$1"
+    local choice
+
+    if [ ! -r /dev/tty ]; then
+        echo -e "\033[31m错误：无法读取交互终端，请在可交互的 shell 中运行此脚本。\033[0m" >&2
+        exit 1
+    fi
+
+    printf "%s" "$prompt" >&2
+    if ! IFS= read -r choice </dev/tty; then
+        echo -e "\033[31m错误：读取输入失败，请在可交互的 shell 中运行此脚本。\033[0m" >&2
+        exit 1
+    fi
+
+    echo "$choice"
+}
+
 echo -e "\033[36m========================================================\033[0m"
 echo -e "\033[36m       Ubuntu 22.04 网络一键调优        \033[0m"
 echo -e "\033[36m========================================================\033[0m"
@@ -61,7 +78,7 @@ echo -e "  1) 512M RAM   "
 echo -e "  2) 1G RAM     "
 echo -e "  3) 2G RAM及以上 "
 echo -e "\033[36m========================================================\033[0m"
-read -p "请输入对应的序号 [1-3]: " RAM_CHOICE
+RAM_CHOICE="$(read_choice "请输入对应的序号 [1-3]: ")" || exit 1
 
 echo -e "\033[36m========================================================\033[0m"
 echo -e "请选择您的 VPS 实际网络带宽大小："
@@ -70,7 +87,7 @@ echo -e "  2) 200 Mbps  "
 echo -e "  3) 500 Mbps  "
 echo -e "  4) 1 Gbps    "
 echo -e "\033[36m========================================================\033[0m"
-read -p "请输入对应的序号 [1-4]: " BANDWIDTH_CHOICE
+BANDWIDTH_CHOICE="$(read_choice "请输入对应的序号 [1-4]: ")" || exit 1
 
 # 初始化基础 TCP Buffer 参数 (默认值)
 TCP_RMEM="4096 87380 16777216"
