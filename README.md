@@ -23,3 +23,9 @@ curl -fsSL https://raw.githubusercontent.com/ZhuofanWu/vpscript/main/swap.sh | s
 ```bash
 curl -fsSL https://raw.githubusercontent.com/ZhuofanWu/vpscript/main/sshkey.sh | sudo bash
 ```
+
+## 一键配置 SSH 防爆破
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/ZhuofanWu/vpscript/main/fail2ban.sh | sudo bash
+```
