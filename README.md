@@ -17,3 +17,9 @@ curl -fsSL https://raw.githubusercontent.com/ZhuofanWu/vpscript/main/docker.sh |
 ```bash
 curl -fsSL https://raw.githubusercontent.com/ZhuofanWu/vpscript/main/swap.sh | sudo bash
 ```
+
+## 一键配置 Root SSH 公钥登录
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/ZhuofanWu/vpscript/main/sshkey.sh | sudo bash
+```
